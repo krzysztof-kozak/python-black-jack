@@ -12,8 +12,20 @@
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
 from random import shuffle
+from functions.starting_hand import draw_starting_hands
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-shuffle(cards)
+deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+dealer_hand = []
+player_hand = []
 
-print(cards)
+shuffle(deck)
+draw_starting_hands(dealer_hand, player_hand, deck)
+
+
+print(dealer_hand)
+print(player_hand)
+
+
+
+
+
