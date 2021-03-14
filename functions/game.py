@@ -6,11 +6,12 @@ from functools import reduce
 from functions.starting_hand import draw_starting_hands
 from functions.winner import declare_winner
 
-deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-dealer_hand = []
-player_hand = []
 
 def game_init():
+    deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    dealer_hand = []
+    player_hand = []
+
     if input("Welcome to Black Jack\nBegin? (type y or n) ").lower() == "y":
 
         shuffle(deck)
