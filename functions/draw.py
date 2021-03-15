@@ -3,7 +3,7 @@ from functools import reduce
 from replit import clear
 
 def draw_a_card(player_hand, deck):
-    drawn_card = 11
+    drawn_card = choice(deck)
     clear()
     if drawn_card == 11:
         print("You drew an ACE!")
