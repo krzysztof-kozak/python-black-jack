@@ -24,3 +24,5 @@ while play_again:
 
     if input("\n\nPlay again? (type y or n) ").lower() != "y":
         play_again = False
+        print("** GOODBYE! **")
+        break
