@@ -18,8 +18,11 @@ def game_init():
         player_score = reduce(lambda a, b: a + b, player_hand)
 
         if player_score == 21:
-            print("\n** YOU DRAW A BLACKJACK **\n** YOU WON! **")
-            return
+            clear()
+            print(f"You drew {player_hand}(- {player_score} -)")
+            print("\n** YOU DRAW A BLACKJACK **\n** EXTREMELY LUCKY! **")
+            print("\n\n ******** \n\n")
+            game_init()
     
         clear()
 
@@ -47,7 +50,9 @@ def game_init():
                 print
 
                 if player_score < 21:
-                    print(f"You drew {drawn_card}...")
+                    if drawn_card != 1:
+                        print(f"You drew {drawn_card}...")
+
                     print(f"Your hand is now {player_hand}({player_score})")
                     correct_option = False
 
