@@ -28,9 +28,14 @@ def game_init():
         print(f"Your hand: {player_hand}")
         print(f"Your score: {player_score}")
 
-        if input("\nHit or stand? (type h or s) ") == "s":
+        hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
+
+        if hit_or_stand == "s":
             winner = declare_winner(player_score, dealer_score, deck)
             clear()
             print(winner)
+
+        elif hit_or_stand == "h":
+            print("H test")
 
 
