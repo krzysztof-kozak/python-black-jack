@@ -11,7 +11,7 @@ def game_init():
     dealer_hand = []
     player_hand = []
 
-    if input("Welcome to Black Jack\nBegin? (type y or n) ").lower() == "y":
+    if input("Welcome to Black Jack\nBegin?\nType y to begin or anykey to quit ").lower() == "y":
         shuffle(deck)
         draw_starting_hands(dealer_hand, player_hand, deck)
 
@@ -27,7 +27,13 @@ def game_init():
         print(f"Dealer's hand: { [dealer_hand[0], 'concealed'] }")
         print(f"Your hand: {player_hand}({player_score})")
 
-        hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
+        correct_option = False
+
+        while not correct_option:
+            hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
+            if hit_or_stand == "h" or hit_or_stand == "s":
+                correct_option = True
+
 
         clear()
 
@@ -47,8 +53,7 @@ def game_init():
                     hit_again = False
                     winner = declare_winner(player_hand, dealer_hand, deck)
                     print(winner)
-
+                    
         return True
-        
     else:
         return False

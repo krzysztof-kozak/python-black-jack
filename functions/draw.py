@@ -16,7 +16,7 @@ def draw_a_card(player_hand, dealer_hand, deck):
 
     if player_score > 21:
         clear()
-        print(f"\nYou drew {drawn_card}\nYour hand is{player_hand}({player_score})\n\n** BUST **\n** YOU LOSE! **")
+        print(f"\nYou drew {drawn_card}\nYour hand is {player_hand}({player_score})\n\n** BUST **\n** YOU LOSE! **")
         return player_score
 
     clear()
