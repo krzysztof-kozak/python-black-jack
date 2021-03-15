@@ -1,18 +1,16 @@
 from random import choice
 from functools import reduce
-from replit import clear
 from art import logo
 
 def draw_a_card(player_hand, deck):
     drawn_card = choice(deck)
 
-    clear()
     if drawn_card == 11:
         print(logo)
         print("You drew an ACE!")
         print("Calculating the optimal strategy...")
 
-        if reduce(lambda a, b: a + b, player_hand) + drawn_card > 21:
+        if reduce(lambda a, b: a + b, player_hand) + drawn_card >= 21:
             drawn_card = 1
             print("Changing ACE from 11 to 1...")
         else:

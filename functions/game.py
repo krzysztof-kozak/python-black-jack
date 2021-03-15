@@ -20,79 +20,81 @@ def game_init():
 
         # we don't want to screw the player when he draws 11 + 11 :P
         if player_score == 22:
-            player_hand[0] = 10;
-            player_hand[1] = 11;
             clear()
             print(logo)
             print("\n** You drew a double ACE **\n** EXTREMELY LUCKY! **")
             print("You win 😎")
             print("\n\n ******** \n\n")
+            player_score = 0
             game_init()
 
         # very lucky!
-        if player_score == 21:
+        elif player_score == 21:
             clear()
             print(logo)
             print(f"You drew {player_hand}(- {player_score} -)")
             print("\n** YOU DRAW A BLACKJACK **\n** VERY LUCKY! **")
             print("\n\n ******** \n\n")
+            player_score = 0
             game_init()
+
+        else:
     
-        clear()
+            clear()
 
-        print(logo)
+            print(logo)
 
-        print(f"Dealer's hand: { [dealer_hand[0], 'concealed'] }")
-        print(f"Your hand: {player_hand}({player_score})")
+            print(f"Dealer's hand: { [dealer_hand[0], 'concealed'] }")
+            print(f"Your hand: {player_hand}({player_score})")
 
-        correct_option = False
+            correct_option = False
 
-        while not correct_option:
-            hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
-            if hit_or_stand == "h" or hit_or_stand == "s":
-                correct_option = True
+            while not correct_option:
+                hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
+                if hit_or_stand == "h" or hit_or_stand == "s":
+                    correct_option = True
 
-        clear()
+            clear()
 
-        if hit_or_stand == "s":
-            winner = declare_winner(player_hand, dealer_hand, deck)
-            print(winner)
+            if hit_or_stand == "s":
+                winner = declare_winner(player_hand, dealer_hand, deck)
+                print(winner)
 
-        elif hit_or_stand == "h":
-            hit_again = True
+            elif hit_or_stand == "h":
+                hit_again = True
 
-            while hit_again:
-                player_score, player_hand, drawn_card = draw_a_card(player_hand, deck)
-                print
+                while hit_again:
+                    player_score, player_hand, drawn_card = draw_a_card(player_hand, deck)
+                    print
 
-                if player_score < 21:
-                    if drawn_card != 1 and drawn_card != 11:
-                        print(logo)
-                        print(f"You drew {drawn_card}...")
-                    
-                    print(f"Your hand is now {player_hand}({player_score})")
-                    correct_option = False
+                    if player_score < 21:
+                        if drawn_card != 1 and drawn_card != 11:
+                            print(logo)
+                            print(f"You drew {drawn_card}...")
+                        
+                        print(f"Your hand is now {player_hand}({player_score})")
+                        correct_option = False
 
-                    while not correct_option:
-                        hit_or_stand = input("\nHit again or stand? type h or s: ").lower()
-                        if hit_or_stand == "h" or hit_or_stand == "s":
-                            correct_option = True
+                        while not correct_option:
+                            hit_or_stand = input("\nHit again or stand? type h or s: ").lower()
+                            if hit_or_stand == "h" or hit_or_stand == "s":
+                                correct_option = True
 
-                    if hit_or_stand == "s":
-                        clear()
-                        print(logo)
+                        if hit_or_stand == "s":
+                            clear()
+                            print(logo)
+                            winner = declare_winner(player_hand, dealer_hand, deck)
+                            print(winner)
+                            break
+                    else:
+                        hit_again = False
+
+                        if drawn_card != 1 and drawn_card != 11:
+                            print(logo)
+                            print(f"You drew {drawn_card}...")
+
                         winner = declare_winner(player_hand, dealer_hand, deck)
-                        print(winner)
-                        break
-                else:
-                    hit_again = False
-
-                    if drawn_card != 1 and drawn_card != 11:
-                        print(logo)
-                        print(f"You drew {drawn_card}...")
-
-                    winner = declare_winner(player_hand, dealer_hand, deck)
-                    print(winner)           
+                        print(winner)           
         return True
     else:
         return False
