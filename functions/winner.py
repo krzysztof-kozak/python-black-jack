@@ -16,14 +16,14 @@ def declare_winner(player_hand, dealer_hand, deck):
         return f"DRAW! Your score was {player_score}\nDealer score was {dealer_score}"
 
     if player_score > 21:
-        return f"\nBUST! You lose\n\nYour score was {player_score}\nDealer score was {dealer_score}"
+        return f"\nYour score was {player_score}\nDealer score was {dealer_score}"
 
 
     if dealer_score > 21:
         return f"You won!\n\nYour score was {player_score}\nDealer score was {dealer_score}"
 
     if player_score > dealer_score:
-        return f"\nYou won!\n\nYour score was {player_score}\nDealer score was {dealer_score}"
+        return f"\nYour score was {player_score}\nDealer score was {dealer_score}"
 
     else:
         return f"\nDealer won!\n\nDealer score was {dealer_score}\nYour score was {player_score}"

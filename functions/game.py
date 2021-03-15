@@ -15,7 +15,9 @@ def game_init():
         shuffle(deck)
         draw_starting_hands(dealer_hand, player_hand, deck)
 
-        if reduce(lambda a, b: a + b, player_hand) == 21:
+        player_score = reduce(lambda a, b: a + b, player_hand)
+
+        if player_score == 21:
             print("\n** YOU DRAW A BLACKJACK **\n ** YOU WON! **")
             return
 
@@ -23,7 +25,7 @@ def game_init():
         clear()
 
         print(f"Dealer's hand: { [dealer_hand[0], 'concealed'] }")
-        print(f"Your hand: {player_hand}")
+        print(f"Your hand: {player_hand}({player_score})")
 
         hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
 
@@ -37,9 +39,11 @@ def game_init():
             hit_again = True
 
             while hit_again:
-                draw_a_card(player_hand, dealer_hand, deck)
-                if input("\nHit again or stand? type h or s ").lower() != "h":
+                player_score = draw_a_card(player_hand, dealer_hand, deck)
+                if player_score < 21:
+                    if input("\nHit again or stand? type h or s ").lower() != "h":
+                        hit_again = False
+                else:
                     hit_again = False
-
-            winner = declare_winner(player_hand, dealer_hand, deck)
-            print(winner)
+                    winner = declare_winner(player_hand, dealer_hand, deck)
+                    print(winner)
