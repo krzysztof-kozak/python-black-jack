@@ -15,14 +15,17 @@ from replit import clear
 from functions.game import game_init
 
 
-
 play_again = True
 
 while play_again:
     clear()
-    game_init()
 
-    if input("\n\nPlay again? (type y or n) ").lower() != "y":
-        play_again = False
-        print("** GOODBYE! **")
+    if game_init():
+        if input("\n\nPlay again? (type y or n) ").lower() != "y":
+            play_again = False
+            print("\n** GOODBYE! **")
+            break
+
+    else:
+        print("\n** GOODBYE! **")
         break

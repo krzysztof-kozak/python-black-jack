@@ -20,7 +20,7 @@ def game_init():
         if player_score == 21:
             print("\n** YOU DRAW A BLACKJACK **\n ** YOU WON! **")
             return
-
+    
 
         clear()
 
@@ -47,3 +47,8 @@ def game_init():
                     hit_again = False
                     winner = declare_winner(player_hand, dealer_hand, deck)
                     print(winner)
+
+        return True
+        
+    else:
+        return False
