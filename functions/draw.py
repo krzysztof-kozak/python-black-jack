@@ -1,8 +1,10 @@
 from random import choice
 from functools import reduce
 from art import logo
+from replit import clear
 
 def draw_a_card(player_hand, deck):
+    clear()
     drawn_card = choice(deck)
 
     if drawn_card == 11:
