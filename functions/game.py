@@ -55,9 +55,15 @@ def game_init():
                         hit_or_stand = input("\nHit again or stand? type h or s: ").lower()
                         if hit_or_stand == "h" or hit_or_stand == "s":
                             correct_option = True
+
+                    if hit_or_stand == "s":
+                        clear()
+                        winner = declare_winner(player_hand, dealer_hand, deck)
+                        print(winner)
+                        break
                 else:
                     hit_again = False
-                    
+
                     if drawn_card != 1:
                         print(f"You drew {drawn_card}...")
 
