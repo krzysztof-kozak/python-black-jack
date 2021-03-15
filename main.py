@@ -13,15 +13,17 @@
 ## The computer is the dealer.
 from replit import clear
 from functions.game import game_init
+from art import logo
 
 
 play_again = True
 
 while play_again:
     clear()
+    print(logo)
 
     if game_init():
-        if input("\n\nPlay again? (type y or n) ").lower() != "y":
+        if input("\n\nPlay again?\nType y to play or anykey to quit ").lower() != "y":
             play_again = False
             print("\n** GOODBYE! **")
             break

@@ -1,12 +1,18 @@
 from random import choice
 from functools import reduce
+from art import logo
+from replit import clear
 
 def declare_winner(player_hand, dealer_hand, deck):
+    clear()
+    print(logo)
+    print(f"Your last draw was {player_hand[len(player_hand) -1 ]}...")
     player_score = reduce(lambda a, b: a + b, player_hand)
     dealer_score = reduce(lambda a, b: a + b, dealer_hand)
 
+    
     print(f"Player hand {player_hand}({player_score})")
-    print(f"Dealer hand {dealer_hand}({dealer_score})")
+    print(f"Dealer hand {dealer_hand}({dealer_score})\n")
 
     if player_score == 21:
         return "\n** YOU HIT A BLACK JACK **\n** YOU WON! **"
