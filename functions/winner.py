@@ -1,16 +1,29 @@
 from random import choice
+from functools import reduce
 
-def declare_winner(player_score, dealer_score, deck):
-    if player_score > 21:
-        return f"BUST. You lose\nYour score was {player_score}\nDealer score was {dealer_score}"
+def declare_winner(player_hand, dealer_hand, deck):
+    player_score = reduce(lambda a, b: a + b, player_hand)
+    dealer_score = reduce(lambda a, b: a + b, dealer_hand)
 
     while dealer_score < 17:
-        dealer_score += choice(deck)
-        if dealer_score > 21:
-            return f"You won!\nYour score was {player_score}\nDealer score was {dealer_score}"
+        drawn_card = choice(deck)
+        dealer_hand.append(drawn_card)
+        dealer_score += drawn_card
+        print("Dealer's hand is less than 17. He must draw a card...")
+        print(f"Dealer draws {drawn_card}.\nDealer's hand is now {dealer_hand} ({dealer_score}).\n")
+
+    if player_score == dealer_score:
+        return f"DRAW! Your score was {player_score}\nDealer score was {dealer_score}"
+
+    if player_score > 21:
+        return f"\nBUST! You lose\n\nYour score was {player_score}\nDealer score was {dealer_score}"
+
+
+    if dealer_score > 21:
+        return f"You won!\n\nYour score was {player_score}\nDealer score was {dealer_score}"
 
     if player_score > dealer_score:
-        return f"You won!\nYour score was {player_score}\nDealer score was {dealer_score}"
+        return f"\nYou won!\n\nYour score was {player_score}\nDealer score was {dealer_score}"
 
     else:
-        return f"Dealer won!\nDealer score was {dealer_score}\nYour score was {player_score}"
+        return f"\nDealer won!\n\nDealer score was {dealer_score}\nYour score was {player_score}"

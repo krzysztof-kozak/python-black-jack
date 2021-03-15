@@ -22,5 +22,5 @@ while play_again:
     clear()
     game_init()
 
-    if input("Play again? (type y or n) ").lower() != "y":
+    if input("\n\nPlay again? (type y or n) ").lower() != "y":
         play_again = False

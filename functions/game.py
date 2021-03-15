@@ -1,9 +1,8 @@
 from replit import clear
-
 from random import shuffle
 from functools import reduce
-
 from functions.starting_hand import draw_starting_hands
+from functions.draw import draw_a_card
 from functions.winner import declare_winner
 
 
@@ -13,29 +12,34 @@ def game_init():
     player_hand = []
 
     if input("Welcome to Black Jack\nBegin? (type y or n) ").lower() == "y":
-
         shuffle(deck)
         draw_starting_hands(dealer_hand, player_hand, deck)
 
+        if reduce(lambda a, b: a + b, player_hand) == 21:
+            print("\n** YOU DRAW A BLACKJACK **\n ** YOU WON! **")
+            return
+
+
         clear()
 
-        dealer_score = reduce(lambda a, b: a + b, dealer_hand)
-        player_score = reduce(lambda a, b: a + b, player_hand)
-
         print(f"Dealer's hand: { [dealer_hand[0], 'concealed'] }")
-        print("Dealer score: unknown\n")
-
         print(f"Your hand: {player_hand}")
-        print(f"Your score: {player_score}")
 
         hit_or_stand = input("\nHit or stand? (type h or s) ").lower()
 
+        clear()
+
         if hit_or_stand == "s":
-            winner = declare_winner(player_score, dealer_score, deck)
-            clear()
+            winner = declare_winner(player_hand, dealer_hand, deck)
             print(winner)
 
         elif hit_or_stand == "h":
-            print("H test")
+            hit_again = True
 
+            while hit_again:
+                draw_a_card(player_hand, dealer_hand, deck)
+                if input("\nHit again or stand? type h or s ").lower() != "h":
+                    hit_again = False
 
+            winner = declare_winner(player_hand, dealer_hand, deck)
+            print(winner)
